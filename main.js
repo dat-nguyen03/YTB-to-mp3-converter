@@ -61,6 +61,7 @@ window.addEventListener("load", function () {
         videoTitle.textContent = res.title;
         downloadLink.href = res.link;
         size.textContent = res.size;
+        inputValue.value = "";
         loader.classList.add("hidden");
         successHandle("Đã sẵn sàng để tải xuống!");
       }
