@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
   const videoTitle = document.querySelector("#videoTitle");
   const downloadLink = document.querySelector("#downloadLink");
   const size = document.querySelector("#size");
+  const loaderText = document.querySelector(".loader-text");
   const regex = new RegExp(
     "^(https?://)?((www|music)\\.)?(youtube|youtu|youtube-nocookie)\\.(com|be)/"
   );
@@ -54,6 +55,7 @@ window.addEventListener("load", function () {
 
       if (res.status == "processing") {
         this.setTimeout(async () => {
+          loaderText.textContent = `Đang chuyển đổi video sang mp3... ${res.progress}%`;
           mp3Conversion(id);
         }, 1000);
       }
@@ -69,7 +71,9 @@ window.addEventListener("load", function () {
         videoTitle.textContent = res.title;
         downloadLink.href = res.link;
         size.textContent = res.size;
+
         inputValue.value = "";
+
         loader.classList.add("hidden");
         successHandle("Đã sẵn sàng để tải xuống!");
       }
