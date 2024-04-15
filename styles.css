@@ -71,6 +71,12 @@
 #downloadLink {
   flex-shrink: 0;
 }
+#footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 
 .hidden {
   display: none !important;

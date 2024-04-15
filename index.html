@@ -30,42 +30,60 @@
         <span class="loader"></span>
         <p class="loader-text text-white">Đang tải.... Vui lòng chờ.</p>
       </div>
-      <div class="row">
-        <div class="col-12 mb-4">
-          <h1 class="text-center">Chuyển đổi video Youtube sang mp3</h1>
-        </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div id="form" class="row col-12 gy-2">
-          <div class="col-md-8 col-sm-12">
-            <input
-              autocomplete="off"
-              type="text"
-              id="url"
-              class="form-control d-block"
-              placeholder="Dán đường dẫn video youtube vào đây..."
-            />
-          </div>
-          <div class="col-md-4 col-sm-12">
-            <button type="submit" class="btn btn-primary" id="btn-submit">
-              Chuyển đổi
-            </button>
+      <div>
+        <div class="row">
+          <div class="col-12 mb-4">
+            <h1 class="text-center">Chuyển đổi video Youtube sang mp3</h1>
           </div>
         </div>
-      </div>
+        <div class="d-flex justify-content-center">
+          <div id="form" class="row col-12 gy-2">
+            <div class="col-md-8 col-sm-12">
+              <input
+                autocomplete="off"
+                type="text"
+                id="url"
+                class="form-control d-block"
+                placeholder="Dán đường dẫn video youtube vào đây..."
+              />
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <button type="submit" class="btn btn-primary" id="btn-submit">
+                Chuyển đổi
+              </button>
+            </div>
+          </div>
+        </div>
 
-      <div
-        id="resultContainer"
-        class="d-flex align-items-center justify-content-center gap-3 px-4 mt-5 hidden"
-      >
-        <div>
-          <h4 id="videoTitle" class="mb-3"></h4>
-          <span id="size"></span>
+        <div
+          id="resultContainer"
+          class="d-flex align-items-center justify-content-center gap-3 px-4 mt-5 hidden"
+        >
+          <div>
+            <h4 id="videoTitle" class="mb-3"></h4>
+            <span id="size"></span>
+          </div>
+          <a href="" class="btn btn-outline-primary" id="downloadLink">
+            <i class="bi bi-download pr-3"></i> Tải xuống
+          </a>
         </div>
-        <a href="" class="btn btn-outline-primary" id="downloadLink">
-          <i class="bi bi-download pr-3"></i> Tải xuống
-        </a>
       </div>
+      <footer
+        id="footer"
+        class="bg-body-tertiary text-center text-lg-start gy-2"
+      >
+        <!-- Copyright -->
+        <div
+          class="text-center p-3"
+          style="background-color: rgba(0, 0, 0, 0.05)"
+        >
+          © Được tạo bởi:
+          <a class="text-body" href="https://github.com/Dat-Nguyen03"
+            >DatNguyen0112</a
+          >
+        </div>
+        <!-- Copyright -->
+      </footer>
     </div>
 
     <script src="./main.js"></script>
