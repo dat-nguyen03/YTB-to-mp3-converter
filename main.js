@@ -23,8 +23,16 @@ window.addEventListener("load", function () {
       });
       return;
     }
-    let parts = inputValue.value.split(/[=&]/);
-    let videoId = parts[1];
+    let parts = "";
+    let videoId = "";
+    if (inputValue.value.includes(".be/")) {
+      parts = inputValue.value.split("/");
+      videoId = parts[parts.length - 1].split("?")[0];
+    } else {
+      parts = inputValue.value.split(/[=&]/);
+      videoId = parts[1];
+    }
+
     mp3Conversion(videoId);
   });
 
