@@ -42,10 +42,16 @@ window.addEventListener("load", function () {
       loader.classList.remove("hidden");
 
       let response = await fetch(
-        `https://proxy-nodejs-api.vercel.app/api/init?id=${id}`
+        `http://localhost:5000/api/init?id=${id}`
       ).then((response) => response.json());
 
       console.log(response);
+      // if (response.status === "error") {
+      //   errorHandle(response.message).then(() => {
+      //     loader.classList.add("hidden");
+      //   });
+      //   return;
+      // }
 
       let url = `https://youtube-mp36.p.rapidapi.com/dl?id=${id}`;
       const options = {
@@ -62,7 +68,8 @@ window.addEventListener("load", function () {
 
       resultContainer.classList.remove("hidden");
       videoTitle.textContent = res.title;
-      downloadLink.href = response.downloadURL;
+      downloadLink.href =
+        response.status !== "error" ? response.downloadURL : res.link;
       // size.textContent = res.size;
       inputValue.value = "";
 
