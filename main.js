@@ -42,7 +42,7 @@ window.addEventListener("load", function () {
       loader.classList.remove("hidden");
 
       let response = await fetch(
-        `http://localhost:5000/api/init?id=${id}`
+        `https://proxy-nodejs-api.vercel.app/init?id=${id}`
       ).then((response) => response.json());
 
       console.log(response);
