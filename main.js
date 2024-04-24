@@ -65,7 +65,19 @@ window.addEventListener("load", function () {
         },
       };
       let res = await fetch(url, options).then((response) => response.json());
+      if (res.status == "processing") {
+        this.setTimeout(async () => {
+          loaderText.textContent = `Đang chuyển đổi video sang mp3... ${res.progress}%`;
+          mp3Conversion(id);
+        }, 1000);
+      }
 
+      if (res.status === "fail") {
+        errorHandle("Có lỗi xảy ra. Vui lòng thử lại!").then(() => {
+          loader.classList.add("hidden");
+        });
+        return;
+      }
       resultContainer.classList.remove("hidden");
       videoTitle.textContent = res.title;
       downloadLink.href = res.link;
