@@ -41,11 +41,11 @@ window.addEventListener("load", function () {
     try {
       loader.classList.remove("hidden");
 
-      let response = await fetch(
-        `https://proxy-nodejs-api.vercel.app/api/init?id=${id}`
-      ).then((response) => response.json());
+      // let response = await fetch(
+      //   `https://proxy-nodejs-api.vercel.app/api/init?id=${id}`
+      // ).then((response) => response.json());
 
-      console.log(response);
+      // console.log(response);
       // if (response.status === "error") {
       //   errorHandle(response.message).then(() => {
       //     loader.classList.add("hidden");
@@ -68,8 +68,7 @@ window.addEventListener("load", function () {
 
       resultContainer.classList.remove("hidden");
       videoTitle.textContent = res.title;
-      downloadLink.href =
-        response.status !== "error" ? response.downloadURL : res.link;
+      downloadLink.href = res.link;
       // size.textContent = res.size;
       inputValue.value = "";
 
