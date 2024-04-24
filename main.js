@@ -40,6 +40,13 @@ window.addEventListener("load", function () {
   const mp3Conversion = async (id) => {
     try {
       loader.classList.remove("hidden");
+
+      let response = await fetch(
+        `https://proxy-nodejs-api.vercel.app/api/init?id=${id}`
+      ).then((response) => response.json());
+
+      console.log(response);
+
       let url = `https://youtube-mp36.p.rapidapi.com/dl?id=${id}`;
       const options = {
         method: "GET",
@@ -53,30 +60,15 @@ window.addEventListener("load", function () {
       };
       let res = await fetch(url, options).then((response) => response.json());
 
-      if (res.status == "processing") {
-        this.setTimeout(async () => {
-          loaderText.textContent = `Đang chuyển đổi video sang mp3... ${res.progress}%`;
-          mp3Conversion(id);
-        }, 1000);
-      }
+      resultContainer.classList.remove("hidden");
+      videoTitle.textContent = res.title;
+      downloadLink.href = response.downloadURL;
+      // size.textContent = res.size;
+      inputValue.value = "";
 
-      if (res.status === "fail") {
-        errorHandle("Có lỗi xảy ra. Vui lòng thử lại!").then(() => {
-          loader.classList.add("hidden");
-        });
-        return;
-      }
-      if (res.status === "ok") {
-        resultContainer.classList.remove("hidden");
-        videoTitle.textContent = res.title;
-        downloadLink.href = res.link;
-        size.textContent = res.size;
-
-        inputValue.value = "";
-
-        loader.classList.add("hidden");
-        successHandle("Đã sẵn sàng để tải xuống!");
-      }
+      loader.classList.add("hidden");
+      successHandle("Đã sẵn sàng để tải xuống!");
+      // }
     } catch (error) {
       console.log(error);
       errorHandle("Có lỗi xảy ra. Vui lòng thử lại!").then(() => {
