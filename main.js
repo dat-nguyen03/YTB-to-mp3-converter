@@ -38,49 +38,50 @@ window.addEventListener("load", function () {
   });
 
   const mp3Conversion = async (id) => {
-    // try {
-    loader.classList.remove("hidden");
+    try {
+      loader.classList.remove("hidden");
 
-    let response = await fetch(
-      `https://proxy-nodejs-api.vercel.app/api/init?id=${id}`
-    ).then((response) => response.json());
+      let response = await fetch(
+        `https://proxy-nodejs-api.vercel.app/api/init?id=${id}`
+      ).then((response) => response.json());
 
-    console.log(response);
-    // if (response.status === "error") {
-    //   errorHandle(response.message).then(() => {
-    //     loader.classList.add("hidden");
-    //   });
-    //   return;
-    // }
+      console.log(response);
+      // if (response.status === "error") {
+      //   errorHandle(response.message).then(() => {
+      //     loader.classList.add("hidden");
+      //   });
+      //   return;
+      // }
 
-    let url = `https://youtube-mp36.p.rapidapi.com/dl?id=${id}`;
-    const options = {
-      method: "GET",
-      headers: {
-        async: true,
-        crossDomain: true,
-        "X-RapidAPI-Key": "9760a4eb7cmshd896bf44e044861p117162jsnf7d28979cc12",
-        "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
-      },
-    };
-    let res = await fetch(url, options).then((response) => response.json());
+      let url = `https://youtube-mp36.p.rapidapi.com/dl?id=${id}`;
+      const options = {
+        method: "GET",
+        headers: {
+          async: true,
+          crossDomain: true,
+          "X-RapidAPI-Key":
+            "9760a4eb7cmshd896bf44e044861p117162jsnf7d28979cc12",
+          "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
+        },
+      };
+      let res = await fetch(url, options).then((response) => response.json());
 
-    resultContainer.classList.remove("hidden");
-    videoTitle.textContent = res.title;
-    downloadLink.href =
-      response.status !== "error" ? response.downloadURL : res.link;
-    // size.textContent = res.size;
-    inputValue.value = "";
+      resultContainer.classList.remove("hidden");
+      videoTitle.textContent = res.title;
+      downloadLink.href =
+        response.status !== "error" ? response.downloadURL : res.link;
+      // size.textContent = res.size;
+      inputValue.value = "";
 
-    loader.classList.add("hidden");
-    successHandle("Đã sẵn sàng để tải xuống!");
-    // }
-    // } catch (error) {
-    //   console.log(error);
-    //   errorHandle("Có lỗi xảy ra. Vui lòng thử lại!").then(() => {
-    //     loader.classList.add("hidden");
-    //   });
-    // }
+      loader.classList.add("hidden");
+      successHandle("Đã sẵn sàng để tải xuống!");
+      // }
+    } catch (error) {
+      console.log(error);
+      errorHandle("Có lỗi xảy ra. Vui lòng thử lại!").then(() => {
+        loader.classList.add("hidden");
+      });
+    }
   };
 
   const errorHandle = (error) => {
