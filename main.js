@@ -78,14 +78,16 @@ window.addEventListener("load", function () {
         });
         return;
       }
-      resultContainer.classList.remove("hidden");
-      videoTitle.textContent = res.title;
-      downloadLink.href = res.link;
-      // size.textContent = res.size;
-      inputValue.value = "";
+      if (res.status === "ok") {
+        resultContainer.classList.remove("hidden");
+        videoTitle.textContent = res.title;
+        downloadLink.href = res.link;
+        // size.textContent = res.size;
+        inputValue.value = "";
 
-      loader.classList.add("hidden");
-      successHandle("Đã sẵn sàng để tải xuống!");
+        loader.classList.add("hidden");
+        successHandle("Đã sẵn sàng để tải xuống!");
+      }
       // }
     } catch (error) {
       console.log(error);
